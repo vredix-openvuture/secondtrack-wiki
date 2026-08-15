@@ -54,6 +54,10 @@ status.
 A row is marked overdue when it still has a balance and its due date has passed. A row is marked as
 synced once its PDF has been uploaded to Nextcloud. Each row links into InvoiceNinja itself.
 
+Building the list also brings the numbers secondtrack caches back in line with it, which costs
+nothing because the list is already in hand. That is what keeps the order column from showing the
+number an invoice had when it was created rather than the one it has now.
+
 Per row you can send the invoice, a reminder or a dunning notice, and archive the PDF to Nextcloud
 by hand.
 

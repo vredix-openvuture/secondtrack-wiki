@@ -65,5 +65,9 @@ Two places, both deliberate:
   InvoiceNinja expense holds the bookkeeping. They can drift if InvoiceNinja is edited directly,
   which is why the expenses page has a resync button that treats InvoiceNinja as authoritative for
   existence and secondtrack as authoritative for content.
-- **The invoice number and amount are cached** on the link row, so the hub can label a row without
-  a request per invoice. The live values always come from InvoiceNinja when the page is built.
+- **The invoice number, amount and status are cached** on the link row, so a list can be drawn
+  without one request per row. The copy is refreshed from InvoiceNinja every time a page actually
+  talks to it about that invoice: opening the project, opening the hub, confirming a send. Renumber
+  an invoice over there and the next look at either page picks it up. The copy is only ever a saving
+  of requests, never a second answer, because a copy that is never refreshed is exactly the
+  contradiction this rule exists to prevent.

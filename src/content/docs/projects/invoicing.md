@@ -54,6 +54,17 @@ A project can have exactly one invoice raised from it. The link row is checked f
 attempt returns the existing invoice rather than creating another. To raise a different one, delete
 or regenerate the existing invoice first, both described below.
 
+## The number shown is the number on the document
+
+The invoice number belongs to InvoiceNinja, so opening the project re-reads it from there rather
+than showing what was recorded when the invoice was raised. Change a number in InvoiceNinja and the
+project agrees with the PDF again on the next look. The amount and the status travel the same way.
+
+If InvoiceNinja cannot be reached, the last known number is shown rather than nothing. If
+InvoiceNinja says the invoice does not exist, the project says so instead of naming a document
+nobody can open, and offers the two ways out: raise a new one, or remove the link so the project is
+free to be invoiced again.
+
 ## Checking it
 
 Once an invoice exists, the project shows **Check invoice**. It opens the document itself, in a
