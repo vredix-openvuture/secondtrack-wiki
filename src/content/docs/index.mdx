@@ -1,0 +1,72 @@
+---
+title: secondtrack
+description: The complete documentation for secondtrack, a self-hosted cockpit for a refurbishing and repair business.
+template: splash
+hero:
+  tagline: Buy hardware, register it in a warehouse that knows what every piece cost, build it into a project, log the hours, and read the profit at the end. Invoices, tasks, orders and files stay in the systems that already own them.
+  image:
+    dark: ../../assets/secondtrack_banner-white.png
+    light: ../../assets/secondtrack_banner-black.png
+  actions:
+    - text: Install it
+      link: /start/install/
+      icon: right-arrow
+    - text: What it actually is
+      link: /start/what-it-is/
+      variant: minimal
+    - text: Source
+      link: https://github.com/vredix-openvuture/secondtrack
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Find what you came for
+
+<CardGrid stagger>
+	<Card title="I just installed it" icon="rocket">
+		[First run](/start/first-run/) covers the order the first hour goes in, and
+		[One home per fact](/concepts/one-home/) explains why so much of this app is
+		about other systems.
+	</Card>
+	<Card title="I want to stock something" icon="open-book">
+		The warehouse has [four departments](/warehouse/departments/), and what you put
+		an item in decides how it is counted. [Parts](/warehouse/parts/) is the one you
+		will use most.
+	</Card>
+	<Card title="The numbers look wrong" icon="warning">
+		[How the money is worked out](/concepts/money/) gives every formula on one page,
+		and [Troubleshooting](/help/troubleshooting/) lists the failure modes that have
+		actually happened.
+	</Card>
+	<Card title="I want to print labels" icon="setting">
+		Every object carries a [scan code](/warehouse/codes-labels/), and the label
+		prints from the server rather than through a browser dialog.
+	</Card>
+</CardGrid>
+
+## The reference material
+
+<CardGrid>
+	<LinkCard
+		title="Settings keys"
+		description="Every key the app stores, with its default and what it does."
+		href="/reference/settings/"
+	/>
+	<LinkCard
+		title="Environment variables"
+		description="Everything you can set in .env, and what it seeds."
+		href="/reference/environment/"
+	/>
+	<LinkCard
+		title="Routes"
+		description="Every URL the app answers, and what it does with it."
+		href="/reference/routes/"
+	/>
+	<LinkCard
+		title="Data model"
+		description="Every table and column, and what NULL means in each one."
+		href="/reference/data-model/"
+	/>
+</CardGrid>

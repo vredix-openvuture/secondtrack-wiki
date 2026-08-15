@@ -1,0 +1,137 @@
+---
+title: Installation
+description: Getting secondtrack running with Docker, what the shipped compose file expects from the host, and how to run it from a checkout instead.
+sidebar:
+  order: 2
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+## With Docker
+
+<Steps>
+
+1. **Get the source.**
+
+   ```sh
+   git clone https://github.com/vredix-openvuture/secondtrack.git
+   cd secondtrack
+   ```
+
+2. **Write the environment file.**
+
+   ```sh
+   cp .env.example .env
+   ```
+
+   Three values matter before the first start. Everything else in the file can wait, because it is
+   only ever used to seed the settings you then edit in the interface.
+
+   | Variable | Set it to |
+   |---|---|
+   | `SECONDTRACK_SECRET_KEY` | A long random string. `python -c "import secrets; print(secrets.token_hex(32))"` |
+   | `SECONDTRACK_ADMIN_USER` | The login name for the one account |
+   | `SECONDTRACK_ADMIN_PASSWORD` | Its first password, changed in the interface afterwards |
+
+   :::caution
+   The secret key signs the session cookie. Leave it at the shipped placeholder and anyone who
+   knows the default can mint a valid session for your instance.
+   :::
+
+3. **Prepare what the compose file expects.**
+
+   As shipped, `compose.yaml` attaches to an external Docker network and writes to a fixed host
+   path. Create both, or edit the two lines.
+
+   ```sh
+   docker network create nginxpm_web        # only if you do not already have it
+   sudo mkdir -p /server/secondtrack/data
+   ```
+
+4. **Start it.**
+
+   ```sh
+   docker compose up -d --build
+   ```
+
+   The app is on port `40019`. On first start it creates the database, the admin account and the
+   default settings, then runs every schema migration it knows.
+
+</Steps>
+
+## Behind a reverse proxy
+
+The container listens on port 8000 internally and joins the `nginxpm_web` network, so a proxy on
+the same network can reach it as `secondtrack:8000` without publishing a port at all.
+
+Two settings matter once HTTPS is in front:
+
+| Where | Set | Why |
+|---|---|---|
+| `.env` | `SECONDTRACK_COOKIE_SECURE=1` | The session cookie is then only sent over HTTPS |
+| Settings, General | Public base URL | It is what the QR codes on your labels encode, and what image links in the Markdown export point at |
+
+Without a public base URL, label QR codes fall back to the URL the request came in on, which is
+usually the internal one and useless on a phone.
+
+## Exporting into an Obsidian vault
+
+Mount the vault and point the export directory at the mount.
+
+```yaml title="compose.yaml"
+    volumes:
+      - /server/secondtrack/data:/data
+      - /path/to/Obsidian-Vault/secondtrack:/obsidian
+```
+
+```sh title=".env"
+SECONDTRACK_EXPORT_DIR=/obsidian
+```
+
+The button on a project then writes the `.md` file straight into the vault. Without the mount,
+exports land in `/data/exports` and are downloaded from the browser instead. See
+[Notes, photos and export](/projects/notes-photos/).
+
+## From a checkout
+
+<Tabs>
+  <TabItem label="Development">
+
+```sh
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+SECONDTRACK_DB_PATH=./data/secondtrack.db uvicorn app.main:app --reload
+```
+
+The app is then on `http://localhost:8000`. Uploads and exports default to `./data/uploads` and
+`./data/exports` relative to the working directory.
+
+  </TabItem>
+  <TabItem label="Production without Docker">
+
+```sh
+pip install -r requirements.txt
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+Run it under a process manager of your choice. There is nothing to compile and no worker to start
+separately: the three [background jobs](/reference/jobs/) live in the web process.
+
+  </TabItem>
+</Tabs>
+
+Label printing needs the `lp` command, from `cups-client`. The container installs it already; a
+bare checkout does not have it unless the host does. Everything else printing-related works
+without it, since the label can always be downloaded as PDF, PNG or SVG.
+
+## Requirements
+
+| For | You need |
+|---|---|
+| Running it | Docker with the compose plugin |
+| Running it from source | Python 3.12 and the packages in `requirements.txt` |
+| Printing labels from the server | `cups-client` and a reachable CUPS queue |
+| Scanning with the camera | HTTPS, because the browser's barcode detector needs a secure context |
+
+There is no external database, cache or queue. The dependency list is thirteen packages long, all
+pinned, all in `requirements.txt`.
