@@ -82,7 +82,7 @@ have not looked at, so looking at it is the route to sending it.
 |---|---|
 | **Send to customer** | Goes to the confirmation described below |
 | **Download PDF** | The same file, as a download |
-| **Regenerate** | Deletes the invoice and raises a fresh one from the project as it is now |
+| **Regenerate** | Rebuilds the positions from the project as it is now, keeping the invoice |
 | **Delete invoice** | Deletes it in InvoiceNinja and here |
 
 The PDF is fetched from InvoiceNinja when the dialog opens, not when the page loads. A project page
@@ -93,20 +93,18 @@ the invoice was deleted in InvoiceNinja, in which case delete it here too and ra
 
 ### Regenerate
 
-A regenerate is a delete and a create, in that order. The line items and the total are rebuilt from
-the project's current items and hours, so it is the way to correct an invoice after fixing what was
-wrong on the project.
+The invoice is rewritten where it is: the line items are rebuilt from the project's current items
+and hours, and everything else about the document stays. It is the way to correct an invoice after
+fixing what was wrong on the project.
 
-Two things to know before pressing it:
+- **The number stays**, and so do the id and the client. A rebuilt invoice is the same invoice with
+  its positions corrected, not a new document. Replacing it would consume a number from your
+  sequence on every correction and leave a deleted invoice behind for each one.
+- **A copy already sent becomes outdated.** The send timestamp is not cleared, because the mail did
+  go out; what the customer holds simply no longer matches. Send it again, or say so.
 
-- **The number changes.** The old invoice is deleted in InvoiceNinja and the new one draws the next
-  number in your sequence.
-- **The send history is gone with it.** The new invoice has never been sent, so reminders and
-  dunning start again from nothing.
-
-The client stays the same: it is read from the invoice being replaced, so a regenerate never
-quietly re-addresses the document. If the old invoice can no longer be read, the project's own
-customer is used instead.
+Regenerating an invoice InvoiceNinja will not accept a change to, a paid one for instance, fails
+with the reason it gave rather than half-applying anything.
 
 ### Delete
 

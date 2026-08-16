@@ -48,6 +48,7 @@ The connection counts as on only when enabled, URL and token are all set.
 | `GET /invoices/{id}` | One invoice, with its client |
 | `GET /invoices/{id}/download` | The PDF |
 | `POST /invoices` | Creating one |
+| `PUT /invoices/{id}` | Rebuilding one's positions, keeping its number |
 | `POST /invoices/bulk` | Mark sent, mark paid, email, delete |
 | `POST /payments` | Recording a payment, optionally with the receipt mail |
 | `POST /emails` | Sending with a named template |
