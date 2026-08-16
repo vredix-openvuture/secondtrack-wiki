@@ -32,14 +32,30 @@ One line per item, exactly the list the project page shows, then the hours.
 | An item | Its name | The booked units | Its sale price per unit |
 | A set | Its name | 1 | The set price, members not listed |
 | A giveaway | Its name | The booked units | 0, with the note "Gratis" |
-| A work session | `Arbeitszeit` | Its hours | The rate that applied to it |
+| The work | `Arbeitszeit` | The total hours | The hourly rate |
 
-Work is billed **one line per session**, oldest first, with the date and what was done in the
-description. That is the part of the document a customer actually reads, and it is also the only
-form that bills a [per-session rate](/projects/time-and-price/) correctly: a single collapsed line
-can only carry one rate, and would quietly bill the project rate for hours logged at another.
+### The work line
 
-A session with no hours is left off. A session with no description shows its date alone.
+Work is **one line**, however many sessions went into it. The sessions are listed inside its
+description, oldest first, one per row:
+
+```
+12.08.2026 · Demontage der alten Lüfter (0,5 h)
+12.08.2026 · Montage der neuen Lüfter (0,75 h)
+13.08.2026 · Verdrahtung (0,75 h)
+13.08.2026 · Inbetriebnahme und Funktionstest (0,5 h)
+```
+
+A session with no hours is left off. A session with no description shows its date and its hours.
+
+The rate on that line is **weighted by hours**, not simply the project rate. A session can carry a
+[rate of its own](/projects/time-and-price/), and the project's labour value honours it, so a
+single line billing the project rate for every hour would hand the customer a total the project
+never arrived at. Four hours at 45 plus one at 80 bill as 5 h at 52, not 5 h at 45.
+
+Because the rate is printed with two decimals, a blended rate that does not land on a cent can put
+the line total a cent away from the project's labour value. Nothing else can be done in one line;
+the alternative is a wrong figure rather than a rounded one.
 
 Nine fans are billed as nine at the price of one, not as one at nine times the price. The quantity
 on the document is the quantity booked on the project.
