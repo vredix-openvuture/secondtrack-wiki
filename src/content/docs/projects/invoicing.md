@@ -29,10 +29,20 @@ One line per item, exactly the list the project page shows, then the hours.
 
 | Line | Product key | Quantity | Cost |
 |---|---|---|---|
-| An item | Its name | 1 | Its sale price |
+| An item | Its name | The booked units | Its sale price per unit |
 | A set | Its name | 1 | The set price, members not listed |
-| A giveaway | Its name | 1 | 0, with the note "Gratis" |
+| A giveaway | Its name | The booked units | 0, with the note "Gratis" |
 | The work | `Arbeitszeit` | The hours | The hourly rate |
+
+Nine fans are billed as nine at the price of one, not as one at nine times the price. The quantity
+on the document is the quantity booked on the project.
+
+:::note
+A unit price is printed with two decimals, so a stored one that is finer cannot survive onto the
+document. Entering 40.00 as the total for three units stores 13.3333 each, and the invoice then
+reads 3 × 13.33 = 39.99 where the project says 40.00. The cent is the cost of a document that shows
+an honest unit price and quantity; the work line has always rounded the same way.
+:::
 
 An item's note travels into the line item's notes. A giveaway gets "Gratis" appended, so a line at
 zero on the customer's document has a reason next to it.

@@ -91,8 +91,11 @@ Below it: the status and material cost, the description, the item table with its
 reference photos, the work session table with its total, and the summary with suggested price, list
 price and both profit figures.
 
-A set appears as one row in the item table, exactly as it does on the page, since listing its
-members as well would show and sum the same purchase twice.
+The item table carries a quantity column, and both money columns are line totals for that quantity.
+Without the column, nine of something reads as one.
+
+A set appears as one row, exactly as it does on the page, since listing its members as well would
+show and sum the same purchase twice.
 
 :::caution
 The exported document is in German: the front matter keys, the section headings and the column
