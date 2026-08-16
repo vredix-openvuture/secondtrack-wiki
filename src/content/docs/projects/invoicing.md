@@ -32,7 +32,14 @@ One line per item, exactly the list the project page shows, then the hours.
 | An item | Its name | The booked units | Its sale price per unit |
 | A set | Its name | 1 | The set price, members not listed |
 | A giveaway | Its name | The booked units | 0, with the note "Gratis" |
-| The work | `Arbeitszeit` | The hours | The hourly rate |
+| A work session | `Arbeitszeit` | Its hours | The rate that applied to it |
+
+Work is billed **one line per session**, oldest first, with the date and what was done in the
+description. That is the part of the document a customer actually reads, and it is also the only
+form that bills a [per-session rate](/projects/time-and-price/) correctly: a single collapsed line
+can only carry one rate, and would quietly bill the project rate for hours logged at another.
+
+A session with no hours is left off. A session with no description shows its date alone.
 
 Nine fans are billed as nine at the price of one, not as one at nine times the price. The quantity
 on the document is the quantity booked on the project.
