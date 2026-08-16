@@ -36,17 +36,23 @@ One line per item, exactly the list the project page shows, then the hours.
 
 ### The work line
 
-Work is **one line**, however many sessions went into it. The sessions are listed inside its
-description, oldest first, one per row:
+Work is **one line**, however many sessions went into it. Its description is a bullet list of what
+was done, in the order the work happened:
 
 ```
-12.08.2026 · Demontage der alten Lüfter (0,5 h)
-12.08.2026 · Montage der neuen Lüfter (0,75 h)
-13.08.2026 · Verdrahtung (0,75 h)
-13.08.2026 · Inbetriebnahme und Funktionstest (0,5 h)
+- Demontage der alten Lüfter
+- Montage der neuen Lüfter
+- Verdrahtung
+- Inbetriebnahme und Funktionstest
 ```
 
-A session with no hours is left off. A session with no description shows its date and its hours.
+No dates and no per-session hours: the customer is buying the work rather than a timesheet, and the
+total hours are already the quantity on the same line.
+
+A session description written as a list stays a list, one bullet per line, and an existing `-`, `*`
+or `•` is not doubled up. A session with no hours contributes nothing, and one with no description
+contributes no bullet, so a project logged without descriptions simply has an empty description
+column.
 
 The rate on that line is **weighted by hours**, not simply the project rate. A session can carry a
 [rate of its own](/projects/time-and-price/), and the project's labour value honours it, so a
