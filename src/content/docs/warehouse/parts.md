@@ -15,7 +15,7 @@ Warehouse, New. The fields, in the order they matter:
 | Field | Notes |
 |---|---|
 | **Name** | The only required field |
-| **Purchase price** | Entered as a total for the quantity, stored per unit |
+| **Purchase price** | Entered as a total for the quantity, stored per unit at the cent |
 | **Sale price** | The same. This is what the item contributes when it goes into a build |
 | **Quantity** | Defaults to 1 |
 | **Receipt** | Required, see below |
@@ -28,6 +28,17 @@ Warehouse, New. The fields, in the order they matter:
 
 Category fields and the global optional fields appear as extra inputs once a category is picked.
 See [Categories and fields](/warehouse/categories/).
+
+### Prices are kept at the cent
+
+A price is entered as a total and stored per unit, and the result is rounded to the cent. Nothing
+finer is worth keeping: an invoice prints a two-decimal unit price, so a stored 13.3333 would leave
+the warehouse, the project and the document each holding a different total.
+
+A total that does not divide evenly therefore shifts a little. Three units entered as 40.00 are
+stored at 13.33 each and are worth 39.99 from then on, everywhere and consistently. The form says so
+while you type: it shows the per-unit price, and the resulting total whenever it differs from what
+you entered.
 
 ### The receipt rule
 

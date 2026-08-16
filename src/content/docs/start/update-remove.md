@@ -48,6 +48,7 @@ In order, every time the process starts:
 | `_migrate_devices_to_parts` | Turns each legacy device into a plain warehouse part on its project and deletes the device row | A second run finds no devices left |
 | `_drop_placeholder_project_items` | Deletes the empty placeholder items the first cut of that migration created | A marker setting, plus a check that the row is empty in every respect |
 | `_seed_project_types` | Creates the two starting project types and assigns one to projects that have none | It only creates what is missing |
+| `_round_money_to_cents` | Rounds stored part, set and expense prices to the cent | The update only matches rows not already there |
 
 The full list, with the columns each one adds, is in [Data model](/reference/data-model/).
 

@@ -37,12 +37,9 @@ One line per item, exactly the list the project page shows, then the hours.
 Nine fans are billed as nine at the price of one, not as one at nine times the price. The quantity
 on the document is the quantity booked on the project.
 
-:::note
-A unit price is printed with two decimals, so a stored one that is finer cannot survive onto the
-document. Entering 40.00 as the total for three units stores 13.3333 each, and the invoice then
-reads 3 × 13.33 = 39.99 where the project says 40.00. The cent is the cost of a document that shows
-an honest unit price and quantity; the work line has always rounded the same way.
-:::
+Line totals match the project exactly, because prices are already
+[stored at the cent](/warehouse/parts/) when the item is stocked. Nothing is rounded on the way to
+the invoice, so there is no figure here that the project page does not also show.
 
 An item's note travels into the line item's notes. A giveaway gets "Gratis" appended, so a line at
 zero on the customer's document has a reason next to it.
