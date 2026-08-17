@@ -40,9 +40,15 @@ an active project does not keep claiming it was closed on some past day.
 
 ## Locked once the invoice is out
 
-From **payment pending** onwards the project is a record rather than a workspace. Its items and
-hours are what the document was built from, so changing them afterwards would make the two disagree
-with nothing to show for it.
+A project locks the moment its invoice has been **sent**, not when its status happens to say so.
+Sending is what puts the document in someone else's hands, and that is the thing that makes the
+items and hours a record rather than a workspace: changing them afterwards would make the two
+disagree with nothing to show for it.
+
+The distinction matters for projects invoiced before this lifecycle existed. Their status stopped at
+invoiced while the invoice had long gone out, and reading the status alone would have left them
+editable. A startup migration moves them to payment pending as well, so the badge agrees with the
+behaviour.
 
 What is gone: editing the project, assigning or releasing items, changing a booked quantity, work
 sessions, notes, photos, expense assignment, stocking it as a finished good, deleting the project,

@@ -49,6 +49,7 @@ In order, every time the process starts:
 | `_drop_placeholder_project_items` | Deletes the empty placeholder items the first cut of that migration created | A marker setting, plus a check that the row is empty in every respect |
 | `_seed_project_types` | Creates the two starting project types and assigns one to projects that have none | It only creates what is missing |
 | `_round_money_to_cents` | Rounds stored part, set and expense prices to the cent | The update only matches rows not already there |
+| `_catch_up_sent_projects` | Moves projects whose invoice was already sent to payment pending | Only rows at or before `invoiced` are touched |
 
 The full list, with the columns each one adds, is in [Data model](/reference/data-model/).
 
