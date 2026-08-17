@@ -42,6 +42,12 @@ directly, the error handling and the enabled check get duplicated and then diver
   belong to a set on it.
 - **Integrations fail quietly on reads and loudly on writes.** A read that fails shows a message.
   A write that fails, other than a best-effort mirror, raises.
+- **A handler that talks to another system is `def`, not `async def`.** Every HTTP client here is
+  synchronous, and a blocking call inside `async def` blocks the event loop, which means the whole
+  application: one slow InvoiceNinja request would freeze the warehouse page, the login and
+  `/healthz` alike. Declared as `def`, the handler runs in a threadpool and only its own request
+  waits. Only handlers that genuinely `await` something, `await request.form()` or
+  `await request.json()`, stay async.
 - **Every migration is idempotent.** It runs on every start, so it has to find nothing to do the
   second time.
 

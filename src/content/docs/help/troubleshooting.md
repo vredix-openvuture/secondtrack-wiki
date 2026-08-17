@@ -157,6 +157,33 @@ Not a failure, just a flat list.
 
 ## General
 
+### Every page is slow, not just one
+
+A page that talks to another system waits for it, and pages differ in how much they ask for:
+
+| Page | Asks |
+|---|---|
+| A project | The invoice, and the client list |
+| The project list | The client list |
+| The hub | The invoice list, the KPIs, the orders |
+| The dashboard | Only what its enabled tiles need |
+| Tasks | The Vikunja projects and their tasks |
+| Warehouse, expenses, statistics, settings | Nothing |
+
+So the first thing to establish is whether the slow page is one that waits on something. If the
+warehouse and `/healthz` are instant while the hub takes ten seconds, the application is fine and
+the system it is asking is slow.
+
+If **everything** is slow, including `/healthz`, suspect the machine or the database file rather
+than an integration. Switching a connection off in the settings is the quickest way to prove which
+one is responsible: a disabled integration is never called.
+
+:::note
+Handlers that call another system run in a threadpool, so one slow request no longer holds up the
+others. Before that fix a single slow InvoiceNinja call froze every page for its duration, which
+looked exactly like the whole application being slow.
+:::
+
 ### The interface still looks old after an update
 
 Static assets are versioned by their modification time, so they cannot be stale after a rebuild.
