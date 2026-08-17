@@ -70,10 +70,17 @@ migration, which rewrites the old `archived`, can never touch it.
 
 ## The list
 
-The tabs filter on active (open and in progress), done, and invoiced, where invoiced covers
-everything with an invoice out, including payment pending and paid. **All** shows everything still
-on the desk; the archive is its own tab, because a place you file things away to should not clutter
-the list you work from.
+**All** is where you land, and it is not one long list: it shows everything still on the desk, split
+into a section per status, in the order a project travels. A section carries the same badge its rows
+would, so a block is recognised by colour before it is read, and the per-row status column is left
+out there because under an "Open" heading it would only repeat the heading.
+
+The archive is its own tab and is excluded from every other one. A place you file things away to
+should not clutter the list you work from.
+
+The remaining tabs are single filters: active (open and in progress), done, and invoiced, where
+invoiced covers everything with an invoice out, so payment pending and paid appear there too. Those
+stay flat, with the status column, since a filter is already one heading.
 
 Statistics counts "expected" figures only over projects with no invoice yet. Once one is out the
 money is no longer a forecast, it is owed or received, and both belong in the
