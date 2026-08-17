@@ -155,6 +155,20 @@ InvoiceNinja is the right instrument.
 If auto-send is on, the invoice is emailed the moment it is created. Otherwise the send button on
 the project does it.
 
+Sending is the point of no return. The project moves to **payment pending** and
+[locks](/projects/overview/): from then on the invoice can be looked at and nothing else, because
+what was billed is now a fact about a document in someone else's hands.
+
+### Getting paid
+
+A project waiting for payment offers one button, **Mark as paid**. It records the payment in
+InvoiceNinja first and only then moves the project to **paid**, so a failure over there leaves the
+project waiting rather than showing money that was never booked. A proper payment record is
+attempted first; if InvoiceNinja will not take one, the invoice is marked paid instead.
+
+A paid project offers **Move to archive**. Nothing is deleted and no item is released: the items
+stay booked because they are the record of what was sold. It only leaves the working list.
+
 ### The confirmation
 
 **Send to customer** does not send. It shows who the mail would go to, read live from InvoiceNinja

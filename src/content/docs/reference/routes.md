@@ -110,6 +110,8 @@ redirected to `/login`; one carrying an `HX-Request` header gets a 401 instead.
 | POST | `/projects/{id}/invoice/send` | Email it |
 | POST | `/projects/{id}/invoice/regenerate` | Delete it and raise a fresh one |
 | POST | `/projects/{id}/invoice/delete` | Delete it in InvoiceNinja and here |
+| POST | `/projects/{id}/invoice/paid` | Record the payment, in InvoiceNinja too |
+| POST | `/projects/{id}/archive` | File a paid project away |
 
 ## Expenses
 

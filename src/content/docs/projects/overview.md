@@ -17,26 +17,61 @@ collisions, and unique across the database.
 It is the number a customer sees. When a project is invoiced, it travels as the InvoiceNinja PO
 number, so nothing internal appears on the document.
 
-## The four statuses
+## The lifecycle
 
-| Status | Means |
-|---|---|
-| **Open** | Created, nothing done yet |
-| **In progress** | Being worked on |
-| **Done** | Finished, not yet invoiced |
-| **Invoiced** | An invoice exists in InvoiceNinja |
+The first four steps are yours to set. The last three are consequences of what happened to the
+invoice, so they are reached by doing that thing rather than by picking from a dropdown.
 
-Moving into done or invoiced stamps the archive date. Moving back out clears it again, so an active
-project does not keep claiming it was closed on some past day.
+| Status | Means | Set by |
+|---|---|---|
+| **Open** | Created, nothing done yet | You |
+| **In progress** | Being worked on | You |
+| **Done** | Finished, not yet invoiced | You |
+| **Invoiced** | An invoice exists in InvoiceNinja | Raising the invoice |
+| **Payment pending** | The invoice is with the customer | Sending it |
+| **Paid** | The payment is recorded, in InvoiceNinja too | The **Mark as paid** button |
+| **Archived** | Filed away, off the working list | The **Move to archive** button |
 
-The project list filters on active (open and in progress), done and invoiced. Statistics counts
-"expected" figures over everything that is not yet invoiced.
+The order is enforced: an invoice that was never sent cannot be marked paid, and a project that was
+never paid cannot be archived. Both refuse with a reason rather than silently doing nothing.
+
+Moving into done, invoiced or archived stamps the archive date. Moving back out clears it again, so
+an active project does not keep claiming it was closed on some past day.
+
+## Locked once the invoice is out
+
+From **payment pending** onwards the project is a record rather than a workspace. Its items and
+hours are what the document was built from, so changing them afterwards would make the two disagree
+with nothing to show for it.
+
+What is gone: editing the project, assigning or releasing items, changing a booked quantity, work
+sessions, notes, photos, expense assignment, stocking it as a finished good, deleting the project,
+and every invoice action except looking at it. The warehouse refuses to book anything onto it too.
+
+What remains: **Check invoice**, which still shows the PDF and offers the download, and whichever
+single lifecycle step is next.
+
+This holds in the routes, not only in the page. The forms are hidden, and a request sent to those
+URLs anyway is answered with the same refusal.
 
 :::note
 Three older values, in production, archived and sold, still exist in the enum for databases that
 have not been through the [status migration](/start/update-remove/). They are never offered as a
-choice. One code path still writes `sold`, described in [Shop orders](/shop/orders/).
+choice, and nothing writes them any more except the one path described in
+[Shop orders](/shop/orders/). The new archived status is stored as `closed` precisely so the
+migration, which rewrites the old `archived`, can never touch it.
 :::
+
+## The list
+
+The tabs filter on active (open and in progress), done, and invoiced, where invoiced covers
+everything with an invoice out, including payment pending and paid. **All** shows everything still
+on the desk; the archive is its own tab, because a place you file things away to should not clutter
+the list you work from.
+
+Statistics counts "expected" figures only over projects with no invoice yet. Once one is out the
+money is no longer a forecast, it is owed or received, and both belong in the
+[profit and loss box](/money/statistics/) instead.
 
 ## Project types
 
