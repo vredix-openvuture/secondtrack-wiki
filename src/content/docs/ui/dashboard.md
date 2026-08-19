@@ -58,14 +58,25 @@ Rows are always filled: when the next tile does not fit in what is left of a row
 that row grows to take the remainder. That matters because the grid floats, so a hole left in a row
 would simply stay there. It is also why switching one widget off can make a neighbour wider.
 
-## When a tile is too short
+## Tiles have a floor
 
-A tile is a fixed box and its content is not. Resize one until the content no longer fits and the
-body is cut off at the bottom, while the link at the foot of the tile stays put: the way to the full
-figures never disappears along with the figures.
+Nothing on the dashboard scrolls, and nothing is cut off. Each tile has a minimum height measured
+against what it actually renders at the narrowest width its column reaches, and that minimum is a
+floor rather than a suggestion: the grid will not let you drag below it, and a layout saved before
+a tile grew is raised to it when the page is drawn.
 
-Making it taller brings the rest back, and **Reset layout** returns every tile to a height that fits
-what it renders.
+| Tile | Rows |
+|---|---|
+| Greeting | 2, it is a band |
+| Finances, Warehouse, Open invoices, Quick access | 4 |
+| Everything else | 3 |
+
+The four at 4 earn it: finances carries a stat row more than the rest, quick access has six buttons
+that fall into three rows once its column narrows, and the two quarter-width tiles wrap their stat
+labels at that width.
+
+Your arrangement is otherwise left alone. Only the height is raised, and only when it would
+otherwise hide something.
 
 ## The logo
 
