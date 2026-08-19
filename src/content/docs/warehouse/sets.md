@@ -41,10 +41,23 @@ There are two other ways a lot comes into being:
 
 ### Editing one
 
-The edit dialog changes the name, the total, the location, the note and the image, and can add
-further members. Members added after the fact carry no purchase price of their own: the lot total
+The edit dialog changes the name, the total, the location, the note, the image and the receipt, and
+can add further members. Members added after the fact carry no purchase price of their own: the lot total
 stays at set level, which is where the one invoice belongs. Changing the lot's location moves every
 member with it.
+
+### The receipt behind a lot
+
+A lot's cost is documented by one expense, and the edit dialog can attach, replace or re-point it:
+
+| Choice | Does |
+|---|---|
+| **Keep current receipt** | Nothing. Offered only when there is one |
+| **Upload new receipt** | Replaces the file on the lot's expense, or creates the expense if the lot was stocked as free |
+| **Use existing receipt** | Points the lot, and its members, at a purchase that is already booked |
+
+The expense amount follows the lot total, so correcting the total here no longer leaves the receipt
+claiming the old one. Saving without touching the control leaves the receipt exactly as it was.
 
 ## Assemblies
 
