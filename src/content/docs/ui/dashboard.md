@@ -51,11 +51,21 @@ everything except the logo tile.
 
 Until you save a layout of your own, tiles are placed in reading order across a twelve column grid.
 A size of 1 is three columns, 4 is the full width. Cards are three rows tall; the greeting is two,
-so it reads as a band across the top rather than a large empty box.
+so it reads as a band across the top rather than a large empty box, and the finances tile is
+four, because it carries a row more than the others and does not fit three.
 
 Rows are always filled: when the next tile does not fit in what is left of a row, the last tile in
 that row grows to take the remainder. That matters because the grid floats, so a hole left in a row
 would simply stay there. It is also why switching one widget off can make a neighbour wider.
+
+## When a tile is too short
+
+A tile is a fixed box and its content is not. Resize one until the content no longer fits and the
+body is cut off at the bottom, while the link at the foot of the tile stays put: the way to the full
+figures never disappears along with the figures.
+
+Making it taller brings the rest back, and **Reset layout** returns every tile to a height that fits
+what it renders.
 
 ## The logo
 
