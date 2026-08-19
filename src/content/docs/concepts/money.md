@@ -61,7 +61,7 @@ The statistics page adds them up, and adds the warehouse.
 | Figure | What it is |
 |---|---|
 | **Total hours** and **labour value** | Sums over every project |
-| **Warehouse stock cost** | Purchase price of every bought part with no project, quantity ignored on this figure |
+| **Warehouse stock cost** | What the shelf cost, the same figure the warehouse page shows |
 | **Material expenses** | Every project's material cost, plus the warehouse stock cost |
 | **Advertising cost** | Every project's advertising cost |
 | **Expected sale value** | List price of every project that is not yet invoiced |
@@ -88,8 +88,9 @@ expenses.
 
 ## In the warehouse
 
-The figures at the top of the warehouse page cover all stock, and are not affected by the filter
-you have applied to the list below.
+One calculation feeds the warehouse page, the statistics and the dashboard tile, so the three can
+never report different totals for the same shelf. The figures cover all stock and are not affected
+by the filter applied to the list below.
 
 | Figure | What is counted |
 |---|---|

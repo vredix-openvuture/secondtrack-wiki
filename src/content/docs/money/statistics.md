@@ -17,7 +17,8 @@ Computed over every project, plus the warehouse.
 | **Total hours** | Every work session, everywhere |
 | **Labour value** | Those hours at the rate that applied to each |
 | **Material expenses** | Every project's material cost, plus the warehouse stock cost |
-| **Warehouse stock cost** | The purchase price of every bought part with no project |
+| **Warehouse stock cost** | What everything on the shelf cost |
+| **Warehouse stock value** | What everything on the shelf is worth |
 | **Advertising cost** | Every project's advertising cost |
 | **Expected sale value** | The list price of every project not yet invoiced |
 | **Expected gross profit** | Their gross profit |
@@ -27,12 +28,9 @@ Computed over every project, plus the warehouse.
 Everything here is an expectation. A project's list price is what you intend to charge, not what
 anyone has paid.
 
-:::note
-The warehouse stock cost on this page adds each part's unit purchase price once, without
-multiplying by its quantity. The warehouse page's own stock cost figure does multiply, so a
-ten-unit part is counted differently in the two places. The warehouse figure is the one to trust
-for inventory value.
-:::
+Both come from the same calculation as the warehouse page: quantities multiplied in, purchase lots
+counted at their invoice total, assemblies at the cost of what went into them, and no set counted
+twice through its members. Whatever is on the shelf is in the figure, sellable or not.
 
 ## Actual
 
