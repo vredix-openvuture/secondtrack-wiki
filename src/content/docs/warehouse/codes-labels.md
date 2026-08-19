@@ -73,6 +73,18 @@ The QR encodes the absolute `/s/<code>` URL, built from the **public base URL** 
 that setting it falls back to the address the request came in on, which behind a reverse proxy is
 usually an internal name and useless on a phone. Set it before printing anything.
 
+## One label tab
+
+Labels open into a single shared tab, not a new one per click, so working
+through a shelf does not leave a row of tabs behind. The same goes for receipts
+and photos, which share a second one.
+
+The label carries the view it was opened from, so its **Back** button returns to
+that filtered list rather than to the warehouse start. Only a path on this site
+is accepted there; anything else falls back to the warehouse, since the value
+travels in the query string and would otherwise be a way to point that button
+anywhere.
+
 ## Getting the label out
 
 | Route | URL | Use it when |
