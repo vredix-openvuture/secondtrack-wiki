@@ -27,6 +27,16 @@ A member row is a full product, not just a name. It carries its own category wit
 fields, condition, supplier, location, quantity, image and note, exactly like a part created on its
 own.
 
+### What a lot is worth
+
+A lot is broken up and its parts are sold individually, so it has no sale price of its own. The
+figure on its card and in its row is the **item value**: what the parts inside it are worth
+together. Its purchase total sits next to it, which is the pair worth reading, what it cost against
+what is in it.
+
+A finished good is the other way round and does show a sale price, because it is the thing being
+sold.
+
 ### Creating one
 
 Warehouse, Sets, New. The lot needs a name, the total price, a receipt and its member rows. As with
